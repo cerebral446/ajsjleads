@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Home, Users, CalendarClock, Plus, LogOut } from "lucide-react";
+import { Home, Users, CalendarClock, Plus, LogOut, Radar } from "lucide-react";
 import { signOut } from "@/app/actions";
 import { Logo } from "./Logo";
 import { useAppData } from "./AppData";
@@ -12,6 +12,7 @@ const ITEMS = [
   { href: "/", label: "Home", icon: Home, match: (p: string) => p === "/" },
   { href: "/leads", label: "Leads", icon: Users, match: (p: string) => p.startsWith("/leads") && p !== "/leads/new" },
   { href: "/follow-ups", label: "Follow-Ups", icon: CalendarClock, match: (p: string) => p.startsWith("/follow-ups") },
+  { href: "/discovery", label: "Discovery", icon: Radar, match: (p: string) => p.startsWith("/discovery") },
   { href: "/leads/new", label: "Add Lead", icon: Plus, match: (p: string) => p === "/leads/new" },
 ];
 
@@ -52,7 +53,7 @@ export function BottomNav({ dueCount }: { dueCount: number }) {
   const path = usePathname();
   return (
     <nav className="fixed inset-x-0 bottom-0 z-30 border-t border-navy-200 bg-white pb-[env(safe-area-inset-bottom)] md:hidden">
-      <ul className="grid h-[68px] grid-cols-4">
+      <ul className="grid h-[68px] grid-cols-5">
         {ITEMS.map((item) => {
           const active = item.match(path);
           const Icon = item.icon;
